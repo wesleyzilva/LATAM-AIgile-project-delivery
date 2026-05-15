@@ -2,8 +2,16 @@
 
 @theme {
   --color-dark-blue: #0A2540;
+  --color-orange: #FF6B00;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+.section-title-underline {
+  display: inline-block;
+  border-bottom: 3px solid #FF6B00;
+  padding-bottom: 4px;
+  margin-bottom: 1.25rem;
 }

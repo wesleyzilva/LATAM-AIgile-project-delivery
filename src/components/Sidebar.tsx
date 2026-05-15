@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
 declare global {
@@ -14,20 +15,20 @@ declare global {
 }
 
 const menuItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "#home", isPage: false },
+  { label: "About", href: "#about", isPage: false },
+  { label: "Services", href: "#services", isPage: false },
+  { label: "Portfolio", href: "#portfolio", isPage: false },
+  { label: "Blog", href: "#blog", isPage: false },
+  { label: "Contact", href: "/contact", isPage: true },
 ];
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const closeSidebar = useCallback(() => setIsOpen(false), []);
 
-  // Close sidebar on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeSidebar();
@@ -36,7 +37,6 @@ export default function Sidebar() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [closeSidebar]);
 
-  // Prevent body scroll when sidebar is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -44,8 +44,7 @@ export default function Sidebar() {
     };
   }, [isOpen]);
 
-  const handleMenuItemClick = (label: string, href: string) => {
-    // Google Analytics event tracking
+  const handleMenuItemClick = (label: string, href: string, isPage: boolean) => {
     if (typeof window !== "undefined" && typeof window.gtag === "function") {
       window.gtag("event", "click", {
         event_category: "menu",
@@ -53,14 +52,23 @@ export default function Sidebar() {
       });
     }
 
-    // Smooth scroll to section
-    const targetId = href.replace("#", "");
-    const target = document.getElementById(targetId);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+    closeSidebar();
+
+    if (isPage) {
+      router.push(href);
+      return;
     }
 
-    closeSidebar();
+    const targetId = href.replace("#", "");
+    const tryScroll = () => {
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    // Small delay to let sidebar close animation finish
+    setTimeout(tryScroll, 300);
   };
 
   return (
@@ -121,18 +129,18 @@ export default function Sidebar() {
 
             {/* Menu Items */}
             <ul className="flex flex-col gap-1 px-6">
-              {menuItems.map(({ label, href }) => (
+              {menuItems.map(({ label, href, isPage }) => (
                 <li key={label}>
                   <a
                     href={href}
                     onClick={(e) => {
                       e.preventDefault();
-                      handleMenuItemClick(label, href);
+                      handleMenuItemClick(label, href, isPage);
                     }}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
                         e.preventDefault();
-                        handleMenuItemClick(label, href);
+                        handleMenuItemClick(label, href, isPage);
                       }
                     }}
                     className="block w-full py-4 px-3 text-white text-xl font-bold rounded-lg hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white transition-colors"
