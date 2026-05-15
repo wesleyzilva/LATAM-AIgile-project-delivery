@@ -3,15 +3,15 @@
 const stats = [
   { icon: "👍", value: "10+", label: "Years Experience" },
   { icon: "🏔", value: "80M+", label: "Daily Transactions" },
-  { icon: "🤝", value: "50+", label: "Happy Clients" },
-  { icon: "⚙", value: "20+", label: "Projects Delivered" },
+  { icon: "🤝", value: "50+", label: "Clients Supported" },
+  { icon: "⚙", value: "20+", label: "Digital Projects" },
 ];
 
 const services = [
   {
     icon: "🚀",
     title: "Agile Delivery Management",
-    desc: "End-to-end agile programme delivery: sprint planning, backlog grooming, risk management, and stakeholder reporting.",
+    desc: "I lead digital projects from idea to launch: sprint planning, backlog grooming, risk management, and stakeholder reporting.",
   },
   {
     icon: "🔒",
@@ -34,19 +34,19 @@ const projects = [
   {
     client: "Serasa Experian",
     role: "Agile Delivery Manager",
-    desc: "Led cross-functional squads delivering credit-score APIs processing 80M+ daily financial transactions with 99.99% SLA.",
+    desc: "I led squads delivering credit-score APIs processing 80M+ daily financial transactions with 99.99% SLA.",
     tags: ["Agile", "FinTech", "APIs"],
   },
   {
     client: "Amdocs",
     role: "Senior Project Manager",
-    desc: "Managed nearshore delivery for telecom BSS/OSS modernisation across LATAM, reducing time-to-market by 35%.",
+    desc: "I managed nearshore delivery for telecom BSS/OSS modernisation across LATAM, reducing time-to-market by 35%.",
     tags: ["Telecom", "Nearshore", "BSS/OSS"],
   },
   {
     client: "Global FinTech",
     role: "DevSecOps Lead",
-    desc: "Implemented zero-trust CI/CD pipelines and observability stacks for payment platforms serving 30+ countries.",
+    desc: "I implemented zero-trust CI/CD pipelines and observability stacks for payment platforms serving 30+ countries.",
     tags: ["DevSecOps", "Payments", "Observability"],
   },
 ];
@@ -73,7 +73,7 @@ export default function HomePage() {
           </div>
 
           <p className="text-sm font-semibold tracking-widest text-[#FF6B00] uppercase">
-            LATAM Agile Delivery — Remote &amp; Nearshore
+            Wesley | LATAM BR | Agile Delivery
           </p>
 
           <div>
@@ -81,25 +81,23 @@ export default function HomePage() {
               Wesley Zilva
             </h1>
             <p className="mt-2 text-xl font-semibold text-blue-300">
-              Agile Delivery Manager · AI-Driven Teams
+              Agile Delivery Manager for Digital Projects
             </p>
           </div>
 
           <blockquote className="text-base sm:text-lg leading-relaxed text-white/80 italic border-l-4 border-[#FF6B00] pl-4 text-left">
-            &ldquo;Building collaborative remote workspaces for digital products
-            — with frameworks like{" "}
-            <strong className="text-white not-italic">imSquad</strong> — to
-            maximise team productivity without sacrificing quality, security, or
-            business focus.&rdquo;
+            &ldquo;I help global companies deliver digital products with agility, security, and a focus on business outcomes. My timezone in Brazil is ideal for US, UK, India, China, and Saudi Arabia — making me your best nearshore partner for 24/7 support.&rdquo;
           </blockquote>
 
           <div className="flex flex-wrap gap-4 justify-center mt-2">
-            <Link
-              href="/contact"
+            <a
+              href="https://wesleyzilva.github.io/agile-delivery-manager"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-[#FF6B00] hover:bg-orange-500 transition-colors text-white font-bold text-base px-8 py-3 rounded-full shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
-              Let&apos;s Connect!
-            </Link>
+              Let&apos;s Connect! Please visit if have fit
+            </a>
             <a
               href="#portfolio"
               className="inline-block border-2 border-white/40 hover:border-white transition-colors text-white font-bold text-base px-8 py-3 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
@@ -117,22 +115,14 @@ export default function HomePage() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold">
             <span className="text-white">ABOUT </span>
-            <span className="text-[#FF6B00]">US</span>
+            <span className="text-[#FF6B00]">ME</span>
           </h2>
           <div className="mx-auto w-12 border-b-2 border-[#FF6B00]" />
           <p className="text-base sm:text-lg leading-relaxed text-white/80">
-            We are a team of experienced agile practitioners, product engineers,
-            and innovators who build{" "}
-            <strong className="text-white">collaborative remote workspaces</strong>{" "}
-            for digital products across LATAM and beyond.
+            I am an Agile Delivery Manager with a passion for digital transformation, remote teams, and AI-driven productivity. My mission is to help companies deliver world-class products, faster and safer, with a focus on business value.
           </p>
           <p className="text-base sm:text-lg leading-relaxed text-white/80">
-            Guided by an{" "}
-            <strong className="text-white">AI-first mindset</strong> and the{" "}
-            <strong className="text-white">imSquad</strong> framework, we
-            maximise team productivity while preserving quality, security, and a
-            sharp focus on business outcomes — enabling distributed teams to
-            deliver more, faster, without compromise.
+            Based in Brazil, I work in the best timezone for the US and UK, and provide excellent support for India, China, and Saudi Arabia. I am ready to help you scale your digital projects globally.
           </p>
         </div>
       </section>
@@ -242,9 +232,18 @@ export default function HomePage() {
             Blog
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Insights on Agile delivery, AI-driven workflows, DevSecOps, and
-            nearshore team leadership. Coming soon.
+            Insights and topics for CTOs, Tech Recruiters, and Digital Leaders:
           </p>
+          <ul className="text-left text-gray-700 text-base mt-4 space-y-2 mx-auto max-w-lg">
+            <li>• Agile Manager & Scrum: Value for Digital Projects</li>
+            <li>• How to Hire and Evaluate Agile Managers</li>
+            <li>• LegalTech, HRTech, and Fintech: Trends & Delivery</li>
+            <li>• Customer Service Automation & AI</li>
+            <li>• Cybersecurity for Digital Products</li>
+            <li>• Remote Teams: Best Practices & Pitfalls</li>
+            <li>• The Nearshore Potential of Brazil for Global Delivery</li>
+          </ul>
+          <p className="text-gray-500 text-sm mt-6">(Publications coming soon. Connect for early access or collaboration!)</p>
         </div>
       </section>
 
@@ -253,12 +252,10 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4 pb-10 border-b border-white/10">
           <div className="flex flex-col gap-3 lg:col-span-2">
             <span className="text-2xl font-extrabold tracking-tight">
-              LATAM<span className="text-[#FF6B00]">.</span>Agile
+              Wesley <span className="text-[#FF6B00]">|</span> LATAM BR <span className="text-[#FF6B00]">|</span> Agile Delivery
             </span>
             <p className="text-white/70 text-sm leading-relaxed">
-              Wesley Zilva infuses each project with enthusiasm and dedication.
-              We deliver flawless products and strive for continuous improvement
-              to ensure ongoing client satisfaction.
+              I bring energy, focus, and a global mindset to every project. My timezone in Brazil is perfect for US, UK, India, China, and Saudi Arabia — enabling seamless collaboration and support across continents.
             </p>
             <div className="text-sm text-white/70 space-y-1 mt-2">
               <p>
@@ -270,10 +267,6 @@ export default function HomePage() {
                   wesley.zilva@gmail.com
                 </a>
               </p>
-            </div>
-            <div className="text-sm text-white/70">
-              <strong className="text-white">Working hours:</strong>
-              <p>8:30 – 12:00 &amp; 14:00 – 18:00</p>
             </div>
           </div>
 
@@ -316,12 +309,14 @@ export default function HomePage() {
             <div className="mt-4">
               <h3 className="text-[#FF6B00] font-semibold text-base mb-2">Contact</h3>
               <p className="text-white/70 text-sm">São Carlos, SP — Brazil</p>
-              <Link
-                href="/contact"
+              <a
+                href="https://wesleyzilva.github.io/agile-delivery-manager"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-3 inline-block bg-[#FF6B00] hover:bg-orange-500 transition-colors text-white font-bold text-sm px-5 py-2 rounded-full"
               >
-                Get in touch →
-              </Link>
+                Let&apos;s Connect! Please visit if have fit
+              </a>
             </div>
           </div>
         </div>
