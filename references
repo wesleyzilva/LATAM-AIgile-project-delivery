@@ -3,7 +3,6 @@ http://linkedin.com/in/wesleyzilva/
 Focus on AI interview: Skills, Communication, Reasoning
 =======================================
 Here's what to expect:
-
 Format: AI Interview
 Estimated duration: up to 27 minutes
 Focus areas: Strategic Project Management, Data Operations & Process Optimization, Cross-Functional Leadership & Stakeholder Management, GenAI Human Data Projects
@@ -15,20 +14,49 @@ My goal is to remove what I call strategic insecurity — situations where teams
 I usually start with a macro-to-micro breakdown, ensuring that roadmap milestones are directly tied to measurable outcomes. From there, I focus on reducing operational friction — things like unclear ownership, dependencies, or misaligned priorities.
 In practice, this allows me to turn complex environments into predictable delivery systems, where execution is consistent and aligned with company goals.
 
+A Pergunta: 
+"Como você garante o alinhamento e o acordo sobre o 'Definition of Done' (DoD) em equipas multidisciplinares?"
+"I facilitate a Strategic Alignment Session where the first deliverable is a Unified Charter. 
+My approach is to bridge the gap between business intent and engineering execution. We define 'Done' 
+through three verifiable lenses: Strategic Readiness (imPO), Architectural Integrity (imDev), 
+and Automated Resilience (imQA). This ensures that sign-off is not a matter of opinion, but a validation 
+of pre-agreed data points."
+
+=============================================================
 2. Data Ops & Process Optimization
 For me, optimization is less about refactoring and more about building resilient systems.
 I usually look for bottlenecks where data quality impacts delivery speed — that’s where most operational friction lives.
 My approach is to introduce automated validation and monitoring, so the system becomes more proactive instead of reactive.
 The end goal is always capital efficiency — increasing throughput while reducing the need for manual intervention from engineering teams.
 
+A Pergunta: 
+"A Micron lida com infraestruturas complexas. Como você equilibra a inovação com a dívida técnica?"
+"I don't treat technical debt as a backlog item; I treat it as Operational Friction. Within the imSquad framework, 
+we allocate a dedicated percentage of our 'infinite loop' to System Hardening. This means we are constantly improving 
+the resilience of the core infrastructure while delivering new features. My goal is to ensure that our velocity is 
+sustainable and that we are building on a foundation of 'Institutional-Grade' quality."
+
+A Pergunta: "Como você otimiza processos de dados em larga escala?"
+"Optimization is about Predictability. I implement Automated Metric Pipelines that transform raw data operations 
+into actionable business intelligence. By leveraging agentic workflows, we reduce manual intervention in the data 
+lifecycle, allowing the team to focus on high-impact anomaly detection and architecture. It's about moving from 
+reactive monitoring to proactive orchestration."
+=============================================================
 3. Cross-functional Leadership
 I see stakeholder management as a process of creating clarity, not consensus.
 In global environments, conflicting priorities are natural, so my role is to make trade-offs explicit and data-driven.
 I typically align discussions around shared metrics — what I call the “North Star” — so decisions are based on impact, not opinion.
 That shifts the conversation from negotiation to alignment, and helps teams operate as a single high-performance unit.
 
+=============================================================
 4. GenAI Projects
 I see GenAI as a way to augment engineering, not replace it.
 My approach is to let AI handle repetitive and low-leverage tasks, while humans focus on architecture, decision-making, and edge cases.
 At the same time, I place strong emphasis on governance — ensuring outputs meet quality, security, and compliance standards.
 The goal is to create a feedback loop where human judgment guides AI, and AI accelerates delivery.
+
+A Pergunta: "Como você está utilizando a IA para aumentar a performance das squads?"
+"I am leading a shift toward Augmented Engineering. By integrating AI as a strategic partner—much like
+I do in my own professional development—we decouple syntax from architecture. In my framework, the human 
+expert remains the Master Orchestrator, while AI handles the high-volume, low-context tasks. This creates
+an infinite delivery cycle where we can scale output without increasing headcount overhead."
