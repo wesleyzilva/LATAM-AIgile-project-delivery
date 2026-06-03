@@ -134,26 +134,39 @@ const timeline = [
   {
     period: "2010 – 2013",
     role: "IT Technician · Full-Stack",
-    desc: "Infrastructure, N1/N2 support, networking, Linux/Windows Server administration.",
+    desc: "Infrastructure, N1/N2 support, networking, servers — full-stack architectural foundation.",
     tags: ["Linux", "Windows Server", "Networking"],
   },
   {
     period: "2013 – 2016",
     role: "Sr. Business Ops Analyst · DBA",
-    desc: "Unix/Oracle DBA at enterprise scale. Full-stack development for internal ops systems.",
-    tags: ["Unix", "Oracle DBA", "Full-Stack"],
+    desc: "Unix/Oracle DBA at enterprise scale, full-stack dev and business operations analysis.",
+    tags: ["Unix", "Oracle DBA", "Full Stack"],
   },
   {
     period: "2016 – 2021",
-    role: "Sr. Systems Analyst · Observability Lead",
-    desc: "5 years at Serasa Experian. 80M+ tx/day. Datadog observability stack. 45% MTTR reduction.",
-    tags: ["Datadog", "Kafka", "DevSecOps"],
+    role: "Sr. Systems Analyst · Full-Stack & Observability",
+    desc: "5-year tenure as Full-Stack Developer and Observability Lead at Serasa Experian. 80M+ tx/day. 45% MTTR reduction.",
+    tags: ["Full Stack", "Observability", "Datadog", "Kafka", "DevSecOps"],
   },
   {
-    period: "2021 – now",
-    role: "Delivery Manager · AI-First",
-    desc: "Agile delivery, data engineering pipelines, AI-augmented workflows. 3 continents, 8 countries.",
-    tags: ["Agile", "GenAI", "Nearshore", "Data Engineering"],
+    period: "2022 – 2024",
+    role: "Agile Coach · Multi-squad",
+    desc: "SAFe facilitation across Legal, HR, Finance, Customer Care and Billing squads with global coach.",
+    tags: ["SAFe", "Scrum", "Kanban"],
+  },
+  {
+    period: "2024 – 2025",
+    role: "IT Coordinator · Payments",
+    desc: "DevSecOps governance and data-driven API-First backlog across B2C and B2B payments BU.",
+    tags: ["DevSecOps", "API-First", "Payments"],
+  },
+  {
+    period: "2026 – present",
+    role: "Global Agile Project Manager",
+    desc: "Nearshore project management with Agile methodologies, AI-powered workspace and international high-performance team leadership.",
+    tags: ["Agile PM", "Nearshore", "AI-Powered"],
+    current: true,
   },
 ];
 
@@ -381,15 +394,22 @@ export default function HomePage() {
             {timeline.map((item, i) => (
               <div key={i} className="flex gap-5">
                 <div className="flex flex-col items-center">
-                  <div className="w-3 h-3 rounded-full bg-[#4CC9F0] mt-1.5 flex-shrink-0" />
+                  <div className={`w-3 h-3 rounded-full mt-1.5 flex-shrink-0 ${item.current ? "bg-green-400 ring-2 ring-green-400/30" : "bg-[#4CC9F0]"}`} />
                   {i < timeline.length - 1 && (
                     <div className="w-px flex-1 bg-[#415A77]/40 my-1" />
                   )}
                 </div>
                 <div className="pb-8">
-                  <span className="text-xs text-[#4CC9F0] font-mono font-semibold">
-                    {item.period}
-                  </span>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs text-[#4CC9F0] font-mono font-semibold">
+                      {item.period}
+                    </span>
+                    {item.current && (
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/15 border border-green-500/25 text-green-400 font-bold tracking-widest uppercase">
+                        Current
+                      </span>
+                    )}
+                  </div>
                   <p className="text-white font-semibold mt-0.5">{item.role}</p>
                   <p className="text-sm text-[#E0E1DD]/60 mt-0.5 leading-relaxed">
                     {item.desc}
