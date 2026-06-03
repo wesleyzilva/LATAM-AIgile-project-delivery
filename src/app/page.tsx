@@ -1,81 +1,8 @@
 import Image from "next/image";
 import ProofStrip from "@/components/ProofStrip";
+import ProjectsSection from "@/components/ProjectsSection";
 
 // ── DATA ──────────────────────────────────────────────────────────
-
-const services = [
-  {
-    icon: "🚀",
-    title: "Agile Delivery Management",
-    desc: "Backlog-to-production clarity. Remove blockers, align cross-functional teams, and ship on schedule without chaos.",
-  },
-  {
-    icon: "🔐",
-    title: "DevSecOps & Observability",
-    desc: "Zero critical vulnerabilities. 99.9% SLA. Security and reliability baked in from sprint 1 via Datadog & automated pipelines.",
-  },
-  {
-    icon: "📊",
-    title: "Data Engineering at Scale",
-    desc: "80M+ transactions/day pipelines. Automated validation, monitoring, and R$500M+/month financial reconciliation.",
-  },
-  {
-    icon: "🤖",
-    title: "AI-First Engineering Workflows",
-    desc: "AI handles volume. Humans focus on impact. 45% MTTR cut. Higher delivery frequency with the same team size.",
-  },
-];
-
-const cases = [
-  {
-    company: "Serasa Experian",
-    role: "Sr. Systems Analyst · Observability Lead",
-    period: "2016 – 2021",
-    highlight: "80M+ tx/day · 99.9% SLA",
-    desc: "Led observability stack (Datadog) for mission-critical credit bureau systems across 50+ microservices. Reduced MTTR by 45%. Zero critical incidents over 5 years.",
-    tags: ["Datadog", "Kafka", "DevSecOps", "Full-Stack", "Agile"],
-  },
-  {
-    company: "Amdocs",
-    role: "Sr. Business Ops Analyst · DBA",
-    period: "Global Telecom · 8 countries",
-    highlight: "50+ engineers · 3 continents",
-    desc: "Coordinated multi-country engineering teams for global telecom BSS/OSS migrations. Delivered on time with zero critical incidents in LATAM, EMEA, and APAC.",
-    tags: ["BSS/OSS", "Oracle DBA", "Unix", "Cross-functional", "Nearshore"],
-  },
-  {
-    company: "Fintech / Banking",
-    role: "Delivery Manager · Data Engineering",
-    period: "2021 – present",
-    highlight: "R$500M+ reconciled/month",
-    desc: "End-to-end data pipeline engineering for high-volume financial reconciliation. Zero errors. Automated 40% of manual validation workload and reduced cycle time by 25%.",
-    tags: ["Data Engineering", "Python", "SQL", "Agile", "AI Workflows"],
-  },
-];
-
-const blogs = [
-  {
-    title: "AI-First Delivery: Augmenting Engineering Teams, Not Replacing Them",
-    desc: "How I integrate GenAI into sprint workflows to handle volume while humans focus on architecture and decision-making.",
-    href: "https://www.linkedin.com/in/wesleyzilva/",
-    date: "2025",
-    slug: "ai_first_delivery",
-  },
-  {
-    title: "Observability as a Delivery Accelerator",
-    desc: "Why treating technical debt as operational friction — and baking monitoring into sprint 1 — reduces MTTR by 45%.",
-    href: "https://www.linkedin.com/in/wesleyzilva/",
-    date: "2025",
-    slug: "observability_accelerator",
-  },
-  {
-    title: "Cross-Functional Alignment: Creating Clarity, Not Consensus",
-    desc: "Stakeholder management in global nearshore teams. How shared metrics — a North Star — replace opinion-based decisions.",
-    href: "https://www.linkedin.com/in/wesleyzilva/",
-    date: "2024",
-    slug: "cross_functional_alignment",
-  },
-];
 
 const contacts = [
   {
@@ -432,42 +359,6 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════
-          SERVICES
-      ══════════════════════════════════════════════ */}
-      <section
-        id="services"
-        className="scroll-mt-20 bg-[#1B263B]/30"
-        style={{ padding: "6rem 2rem" }}
-      >
-        <div className="max-w-5xl mx-auto">
-          <SectionLabel label="Services" />
-          <h2
-            className="text-center font-extrabold tracking-tight text-white mb-14"
-            style={{
-              fontFamily: "var(--font-poppins), sans-serif",
-              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-            }}
-          >
-            What I deliver
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {services.map((s) => (
-              <div
-                key={s.title}
-                className="p-6 rounded-2xl bg-[#0D1B2A] border border-[#415A77] hover:border-[#4CC9F0]/50 transition-colors"
-              >
-                <div className="text-3xl mb-3">{s.icon}</div>
-                <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
-                <p className="text-sm leading-relaxed text-[#E0E1DD]/60">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════
           PORTFOLIO
       ══════════════════════════════════════════════ */}
       <section
@@ -478,96 +369,92 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto">
           <SectionLabel label="Portfolio" />
           <h2
-            className="text-center font-extrabold tracking-tight text-white mb-14"
+            className="text-center font-extrabold tracking-tight text-white mb-3"
             style={{
               fontFamily: "var(--font-poppins), sans-serif",
               fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
             }}
           >
-            Cases &amp; results
+            12 projects · real results
           </h2>
-          <div className="flex flex-col gap-6">
-            {cases.map((c) => (
-              <div
-                key={c.company}
-                className="p-6 rounded-2xl bg-[#1B263B] border border-[#415A77] hover:border-[#4CC9F0]/50 transition-colors"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
-                  <div>
-                    <h3 className="text-white font-bold text-xl">
-                      {c.company}
-                    </h3>
-                    <p className="text-[#4CC9F0] text-sm font-medium mt-0.5">
-                      {c.role} · {c.period}
-                    </p>
-                  </div>
-                  <span className="self-start px-3 py-1 rounded-full bg-[#4CC9F0]/10 border border-[#4CC9F0]/30 text-[#4CC9F0] text-xs font-bold whitespace-nowrap">
-                    {c.highlight}
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed text-[#E0E1DD]/65 mb-3">
-                  {c.desc}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {c.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-2 py-0.5 rounded-full bg-[#0D1B2A] border border-[#415A77] text-[#E0E1DD]/50"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <p className="text-center text-[#E0E1DD]/45 text-sm mb-10">
+            Click any card to see context, actions, and outcomes.
+          </p>
+          <ProjectsSection />
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════
-          BLOG
+          LOOM
       ══════════════════════════════════════════════ */}
       <section
-        id="blog"
+        id="loom"
         className="scroll-mt-20 bg-[#1B263B]/30"
         style={{ padding: "6rem 2rem" }}
       >
         <div className="max-w-5xl mx-auto">
-          <SectionLabel label="Blog" />
+          <SectionLabel label="See me on Loom" />
           <h2
-            className="text-center font-extrabold tracking-tight text-white mb-14"
+            className="text-center font-extrabold tracking-tight text-white mb-3"
             style={{
               fontFamily: "var(--font-poppins), sans-serif",
               fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
             }}
           >
-            Insights on delivery &amp; AI
+            Watch me in action
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {blogs.map((b) => (
-              <a
-                key={b.title}
-                href={b.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-track-event="blog_click"
-                data-track-category="content"
-                data-track-label={b.slug}
-                className="flex flex-col gap-3 p-6 rounded-2xl bg-[#0D1B2A] border border-[#415A77] hover:border-[#4CC9F0]/50 transition-colors group"
+          <p className="text-center text-[#E0E1DD]/45 text-sm mb-10">
+            Real context. No script. Who I am and how I work.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                title: "Who I'm",
+                desc: "Quick intro — background, values, and how I operate in distributed teams.",
+                videoId: "375420259d694faf96147e51777c9cde",
+              },
+              {
+                title: "My 10 Years Pitch",
+                desc: "14 years condensed: from IT Technician to Global Agile PM. The arc that matters.",
+                videoId: "REPLACE_LOOM_ID_2",
+              },
+              {
+                title: "Methodologies, Frameworks & Tools",
+                desc: "Scrum, SAFe, Kanban, Jira, ServiceNow — how I actually use them day-to-day.",
+                videoId: "REPLACE_LOOM_ID_3",
+              },
+              {
+                title: "Deep Engineer",
+                desc: "Full-Stack, Observability, DevSecOps — the technical depth behind the delivery layer.",
+                videoId: "REPLACE_LOOM_ID_4",
+              },
+              {
+                title: "Data Management",
+                desc: "80M+ tx/day, R$500M reconciliation, Databricks migrations — data engineering at scale.",
+                videoId: "REPLACE_LOOM_ID_5",
+              },
+            ].map((v) => (
+              <div
+                key={v.videoId}
+                className="flex flex-col gap-3 rounded-2xl bg-[#0D1B2A] border border-[#415A77] overflow-hidden hover:border-[#4CC9F0]/50 transition-colors"
               >
-                <span className="text-xs text-[#4CC9F0]/60 font-mono">
-                  {b.date}
-                </span>
-                <h3 className="text-white font-semibold text-base leading-snug group-hover:text-[#4CC9F0] transition-colors">
-                  {b.title}
-                </h3>
-                <p className="text-sm text-[#E0E1DD]/55 leading-relaxed flex-1">
-                  {b.desc}
-                </p>
-                <span className="text-xs text-[#4CC9F0] font-semibold">
-                  Read on LinkedIn →
-                </span>
-              </a>
+                {/* Video embed */}
+                <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                  <iframe
+                    src={`https://www.loom.com/embed/${v.videoId}?hide_owner=true&hide_share=true&hide_title=false&hideEmbedTopBar=true`}
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                    style={{ border: "none" }}
+                    title={v.title}
+                  />
+                </div>
+                {/* Caption */}
+                <div className="px-5 pb-5">
+                  <h3 className="text-white font-bold text-base mb-1">{v.title}</h3>
+                  <p className="text-sm text-[#E0E1DD]/55 leading-relaxed">{v.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

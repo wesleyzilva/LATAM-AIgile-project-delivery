@@ -7,9 +7,8 @@ import { trackEvent } from "@/hooks/useTracking";
 const menuItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
   { label: "Portfolio", href: "#portfolio" },
-  { label: "Blog", href: "#blog" },
+  { label: "See me on Loom", href: "#loom" },
   { label: "Contact", href: "#contact" },
 ];
 
