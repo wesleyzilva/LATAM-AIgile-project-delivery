@@ -2,16 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-
-declare global {
-  interface Window {
-    gtag?: (
-      command: string,
-      eventName: string,
-      params?: Record<string, string>
-    ) => void;
-  }
-}
+import { trackEvent } from "@/hooks/useTracking";
 
 const menuItems = [
   { label: "Home", href: "#home" },
@@ -45,13 +36,8 @@ export default function Sidebar() {
   }, [isOpen]);
 
   const handleMenuItemClick = (label: string, href: string) => {
-    // Google Analytics event tracking
-    if (typeof window !== "undefined" && typeof window.gtag === "function") {
-      window.gtag("event", "click", {
-        event_category: "menu",
-        event_label: label,
-      });
-    }
+    // Fire GA4 + Clarity via shared trackEvent
+    trackEvent("menu_click", { event_category: "navigation", event_label: label });
 
     // Smooth scroll to section
     const targetId = href.replace("#", "");
