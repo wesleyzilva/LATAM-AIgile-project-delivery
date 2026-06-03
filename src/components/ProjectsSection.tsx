@@ -18,6 +18,7 @@ interface Project {
   evidence: "measured" | "estimated" | "qualitative";
   skills: string[];
   links: { text: string; url: string }[];
+  location?: string[];
 }
 
 // ── DATA ──────────────────────────────────────────────────────────
@@ -28,6 +29,7 @@ const PROJECTS: Project[] = [
     category: "Security & Compliance",
     categoryColor: "text-red-400 border-red-400/30 bg-red-400/10",
     title: "Vulnerability Reduction Across 110 Java/Angular Applications",
+    location: ["🇮🇳 India", "🇨🇷 Costa Rica"],
     context:
       "Third-party squad without business context, with fixed deadline and budget for security remediation.",
     role: "IT Manager and technical lead for the DevSecOps delivery stream.",
@@ -112,6 +114,7 @@ const PROJECTS: Project[] = [
     category: "Agile Transformation",
     categoryColor: "text-yellow-400 border-yellow-400/30 bg-yellow-400/10",
     title: "B2B Digital Transformation with Agile Metrics",
+    location: ["🇬🇧 London"],
     context:
       "Need to increase squad performance and executive transparency.",
     role: "Agile lead across multiple teams and governance facilitator.",
@@ -202,6 +205,7 @@ const PROJECTS: Project[] = [
     category: "Customer Experience",
     categoryColor: "text-pink-400 border-pink-400/30 bg-pink-400/10",
     title: "Digital Journey Evolution Driven by Analytics",
+    location: ["🇺🇸 USA", "🇮🇳 India"],
     context:
       "Self-service journey needed higher availability and less friction.",
     role: "Indirect management of partner team with data-driven prioritization.",
@@ -295,6 +299,7 @@ const PROJECTS: Project[] = [
     category: "Global Leadership",
     categoryColor: "text-indigo-400 border-indigo-400/30 bg-indigo-400/10",
     title: "International Mentoring for Agile Culture",
+    location: ["🌍 Africa", "🇨🇴 Colombia"],
     context:
       "Leadership evolution for distributed international environments.",
     role: "International mentee and later mentor for other professionals.",
@@ -324,6 +329,7 @@ const PROJECTS: Project[] = [
     category: "Critical Support",
     categoryColor: "text-rose-400 border-rose-400/30 bg-rose-400/10",
     title: "Firefighters for Legacy CRM/Billing (Telco)",
+    location: ["🇮🇳 India", "🇧🇷 Brazil"],
     context:
       "Legacy environment with high incident volume and 24x7 operations.",
     role: "Led international squad for support and stabilization.",
@@ -350,6 +356,7 @@ const PROJECTS: Project[] = [
     category: "Knowledge Transfer",
     categoryColor: "text-amber-400 border-amber-400/30 bg-amber-400/10",
     title: "Technical Internalization in São Carlos Operation",
+    location: ["🇧🇷 São Carlos, Brazil"],
     context:
       "Critical technical knowledge was held by consultancies and had to be internalized.",
     role: "Led knowledge transfer between business and engineering.",
@@ -416,6 +423,14 @@ function ProjectModal({
               >
                 {ev.label}
               </span>
+              {project.location?.map((loc) => (
+                <span
+                  key={loc}
+                  className="text-xs px-2.5 py-0.5 rounded-full border border-[#4CC9F0]/30 bg-[#4CC9F0]/10 text-[#4CC9F0]"
+                >
+                  {loc}
+                </span>
+              ))}
             </div>
             <h3 className="text-white font-bold text-lg leading-snug">
               {project.title}
@@ -569,9 +584,23 @@ export default function ProjectsSection() {
             </div>
 
             {/* Title */}
-            <h3 className="text-white font-semibold text-sm leading-snug mb-3 group-hover:text-[#4CC9F0] transition-colors line-clamp-3">
+            <h3 className="text-white font-semibold text-sm leading-snug mb-2 group-hover:text-[#4CC9F0] transition-colors line-clamp-3">
               {p.title}
             </h3>
+
+            {/* Location flags */}
+            {p.location && (
+              <div className="flex flex-wrap gap-1 mb-2">
+                {p.location.map((loc) => (
+                  <span
+                    key={loc}
+                    className="text-[10px] px-1.5 py-0.5 rounded border border-[#4CC9F0]/25 bg-[#4CC9F0]/8 text-[#4CC9F0]/70"
+                  >
+                    {loc}
+                  </span>
+                ))}
+              </div>
+            )}
 
             {/* Bottom row */}
             <div className="flex items-center justify-between gap-2 mt-auto">

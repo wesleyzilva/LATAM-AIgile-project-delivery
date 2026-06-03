@@ -8,6 +8,7 @@ const menuItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Portfolio", href: "#portfolio" },
+  { label: "Tools & Platforms", href: "#tools" },
   { label: "See me on Loom", href: "#loom" },
   { label: "Contact", href: "#contact" },
 ];

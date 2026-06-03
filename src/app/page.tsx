@@ -385,6 +385,140 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════
+          TOOLS & PLATFORMS
+      ══════════════════════════════════════════════ */}
+      <section
+        id="tools"
+        className="scroll-mt-20"
+        style={{ padding: "6rem 2rem" }}
+      >
+        <div className="max-w-5xl mx-auto">
+          <SectionLabel label="Tools & Platforms" />
+          <h2
+            className="text-center font-extrabold tracking-tight text-white mb-3"
+            style={{
+              fontFamily: "var(--font-poppins), sans-serif",
+              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+            }}
+          >
+            Toolbox built over{" "}
+            <span className="text-[#4CC9F0]">14 years</span>
+          </h2>
+          <p className="text-center text-[#E0E1DD]/45 text-sm mb-10">
+            Enterprise platforms, cloud infrastructure, observability, and delivery tools I use in production.
+          </p>
+
+          <div className="flex flex-col gap-10">
+            {[
+              {
+                category: "Delivery & Collaboration",
+                color: "#4CC9F0",
+                items: [
+                  { name: "Jira / Jira Service Mgmt", note: "Agile boards, sprint planning, backlog management, service desk queues" },
+                  { name: "Monday.com", note: "Cross-team project tracking, workflow automation, timeline views" },
+                  { name: "Slack", note: "Async team communication, incident response channels, bot integrations" },
+                  { name: "Confluence / Notion", note: "Documentation, runbooks, ADRs, knowledge base management" },
+                  { name: "GitHub / GitHub Actions", note: "Version control, CI/CD workflows, branch strategies, code review" },
+                ],
+              },
+              {
+                category: "ITSM & Support",
+                color: "#F72585",
+                items: [
+                  { name: "ServiceNow", note: "Incident, Change, Problem Management — enterprise ITSM at scale" },
+                  { name: "Zendesk", note: "Customer support operations, SLA management, ticket routing" },
+                  { name: "Freshdesk", note: "Support automation, escalation flows, CSAT tracking" },
+                ],
+              },
+              {
+                category: "CRM & Sales",
+                color: "#7209B7",
+                items: [
+                  { name: "Salesforce", note: "Pipeline management, custom objects, flows, and reporting" },
+                  { name: "HubSpot", note: "Inbound automation, lead scoring, deal tracking" },
+                  { name: "Dynamics 365", note: "CRM + ERP integration in enterprise environments" },
+                ],
+              },
+              {
+                category: "Cloud & Infrastructure",
+                color: "#4CC9F0",
+                items: [
+                  { name: "AWS", note: "EC2, S3, Lambda, RDS, ECS, IAM — cloud-native workloads" },
+                  { name: "Azure", note: "AKS, DevOps pipelines, App Service, Azure SQL" },
+                  { name: "GCP", note: "BigQuery, Cloud Run, Pub/Sub for data and API workloads" },
+                  { name: "Docker / Kubernetes", note: "Containerization, Helm charts, cluster management" },
+                  { name: "On-Premise / Hybrid", note: "Legacy infrastructure, DC migrations, hybrid cloud bridge strategies" },
+                ],
+              },
+              {
+                category: "Observability & Monitoring",
+                color: "#F72585",
+                items: [
+                  { name: "Datadog", note: "APM, dashboards, log management, alerting pipelines" },
+                  { name: "Grafana / Prometheus", note: "Metrics visualization, SLO/SLA monitoring, custom alerting" },
+                  { name: "Splunk / SIEM", note: "Log aggregation, correlation rules, security event monitoring" },
+                ],
+              },
+              {
+                category: "Analytics & Product Intelligence",
+                color: "#7209B7",
+                items: [
+                  { name: "Google Analytics", note: "Web traffic analysis, funnel tracking, conversion optimization" },
+                  { name: "Microsoft Clarity", note: "Session recordings, heatmaps, UX friction detection" },
+                  { name: "Amplitude", note: "Product analytics, retention cohorts, feature impact measurement" },
+                  { name: "Adobe Analytics", note: "Enterprise digital analytics, customer journey mapping" },
+                  { name: "Databricks", note: "ETL orchestration, Delta Lake, large-scale data migration" },
+                  { name: "Tableau", note: "BI dashboards, ad-hoc analysis, self-service reporting" },
+                  { name: "Power BI", note: "Executive dashboards, KPI tracking, data storytelling" },
+                ],
+              },
+              {
+                category: "DevSecOps & CI/CD",
+                color: "#4CC9F0",
+                items: [
+                  { name: "Jenkins / GitLab CI", note: "Build pipelines, automated test suites, release gates" },
+                  { name: "Terraform", note: "Infrastructure as code for multi-cloud environments" },
+                  { name: "Veracode", note: "SAST/DAST security scanning integrated into CI pipelines" },
+                  { name: "Checkmarx", note: "Static code analysis, vulnerability detection in enterprise codebases" },
+                ],
+              },
+              {
+                category: "Finance & ERP",
+                color: "#F72585",
+                items: [
+                  { name: "SAP", note: "FI/CO modules, procurement integration, financial reporting" },
+                  { name: "Oracle ERP", note: "GL, AP/AR, asset management in banking environments" },
+                  { name: "TOTVS Protheus", note: "ERP for Brazilian mid-market — fiscal compliance, payroll" },
+                  { name: "Billing Systems", note: "Subscription billing, invoice reconciliation, chargeback automation" },
+                  { name: "Tableau (Finance)", note: "Revenue dashboards, budget vs. actuals, financial KPIs for CFO audiences" },
+                ],
+              },
+            ].map((group) => (
+              <div key={group.category}>
+                <h3
+                  className="text-xs font-bold tracking-widest uppercase mb-4"
+                  style={{ color: group.color }}
+                >
+                  {group.category}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {group.items.map((tool) => (
+                    <div
+                      key={tool.name}
+                      className="rounded-xl bg-[#1B263B] border border-[#415A77] px-4 py-3 hover:border-[#4CC9F0]/50 transition-colors"
+                    >
+                      <p className="text-white font-semibold text-sm mb-1">{tool.name}</p>
+                      <p className="text-[#E0E1DD]/45 text-xs leading-relaxed">{tool.note}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
           LOOM
       ══════════════════════════════════════════════ */}
       <section
