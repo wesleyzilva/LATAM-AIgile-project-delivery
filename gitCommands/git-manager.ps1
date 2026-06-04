@@ -82,11 +82,11 @@ function Write-Header {
     Write-Host ''
 }
 
-function Write-OK   { param([string]$M); Write-Host "  [OK] $M" -ForegroundColor Green  }
+function Write-OK { param([string]$M); Write-Host "  [OK] $M" -ForegroundColor Green }
 function Write-Warn { param([string]$M); Write-Host "  [!!] $M" -ForegroundColor Yellow }
-function Write-Err  { param([string]$M); Write-Host "  [XX] $M" -ForegroundColor Red    }
-function Write-Info { param([string]$M); Write-Host "  [..] $M" -ForegroundColor Cyan   }
-function Write-Bold { param([string]$M); Write-Host "  $M"       -ForegroundColor White  }
+function Write-Err { param([string]$M); Write-Host "  [XX] $M" -ForegroundColor Red }
+function Write-Info { param([string]$M); Write-Host "  [..] $M" -ForegroundColor Cyan }
+function Write-Bold { param([string]$M); Write-Host "  $M"       -ForegroundColor White }
 
 # ---------------------------------------------------------------------------
 # Workspace do VS Code
@@ -121,7 +121,7 @@ function Convert-ToWorkspaceRelativePath {
     param([string]$TargetPath)
 
     $workspaceRootResolved = [System.IO.Path]::GetFullPath($WorkspaceRoot)
-    $targetResolved        = [System.IO.Path]::GetFullPath($TargetPath)
+    $targetResolved = [System.IO.Path]::GetFullPath($TargetPath)
 
     if ($targetResolved.StartsWith($workspaceRootResolved, [System.StringComparison]::OrdinalIgnoreCase)) {
         $relative = $targetResolved.Substring($workspaceRootResolved.Length).TrimStart('\')
@@ -140,15 +140,15 @@ function Add-WorkspaceFolder {
     )
 
     $workspaceData = Get-WorkspaceData
-    $relativePath  = Convert-ToWorkspaceRelativePath -TargetPath $FolderPath
+    $relativePath = Convert-ToWorkspaceRelativePath -TargetPath $FolderPath
 
     if (-not $FolderName) {
         $FolderName = Split-Path $FolderPath -Leaf
     }
 
     $alreadyExists = @($workspaceData.folders | Where-Object {
-        $_.path -eq $relativePath -or $_.name -eq $FolderName
-    }).Count -gt 0
+            $_.path -eq $relativePath -or $_.name -eq $FolderName
+        }).Count -gt 0
 
     if ($alreadyExists) {
         Write-Warn "O repositorio '$FolderName' ja esta no workspace."
@@ -170,9 +170,9 @@ function Remove-WorkspaceFolder {
     param([string]$FolderName)
 
     $workspaceData = Get-WorkspaceData
-    $targetFolder  = @($workspaceData.folders | Where-Object {
-        $_.name -eq $FolderName -or $_.path -eq $FolderName
-    } | Select-Object -First 1)
+    $targetFolder = @($workspaceData.folders | Where-Object {
+            $_.name -eq $FolderName -or $_.path -eq $FolderName
+        } | Select-Object -First 1)
 
     if ($targetFolder.Count -eq 0) {
         Write-Warn "Repositorio '$FolderName' nao foi encontrado no workspace."
@@ -180,8 +180,8 @@ function Remove-WorkspaceFolder {
     }
 
     $workspaceData.folders = @($workspaceData.folders | Where-Object {
-        $_.name -ne $targetFolder[0].name -and $_.path -ne $targetFolder[0].path
-    })
+            $_.name -ne $targetFolder[0].name -and $_.path -ne $targetFolder[0].path
+        })
     Save-WorkspaceData -WorkspaceData $workspaceData
     Write-OK "Repositorio '$($targetFolder[0].name)' removido do workspace."
     return $true
@@ -200,9 +200,9 @@ function Invoke-CloneAndAddToWorkspace {
     }
 
     $defaultFolderName = [System.IO.Path]::GetFileNameWithoutExtension(($repoUrl.TrimEnd('/') -split '/')[-1])
-    $folderNameInput   = Read-Host "  Nome da pasta local (Enter = $defaultFolderName)"
-    $folderName        = if ([string]::IsNullOrWhiteSpace($folderNameInput)) { $defaultFolderName } else { $folderNameInput.Trim() }
-    $targetPath        = Join-Path $WorkspaceRoot $folderName
+    $folderNameInput = Read-Host "  Nome da pasta local (Enter = $defaultFolderName)"
+    $folderName = if ([string]::IsNullOrWhiteSpace($folderNameInput)) { $defaultFolderName } else { $folderNameInput.Trim() }
+    $targetPath = Join-Path $WorkspaceRoot $folderName
 
     if (Test-Path $targetPath) {
         Write-Warn "A pasta '$targetPath' ja existe."
@@ -241,7 +241,7 @@ function Invoke-RemoveFromWorkspace {
     Write-Header 'REMOVER REPOSITORIO DO WORKSPACE'
 
     $workspaceData = Get-WorkspaceData
-    $folders       = @($workspaceData.folders)
+    $folders = @($workspaceData.folders)
 
     if ($folders.Count -eq 0) {
         Write-Warn 'Nenhum repositorio encontrado no workspace.'
@@ -295,14 +295,15 @@ function Get-RepoInfo {
     $branch = (git rev-parse --abbrev-ref HEAD 2>&1) | Select-Object -First 1
     $remote = (git remote get-url origin 2>&1)       | Select-Object -First 1
 
-    $ahead  = 0
+    $ahead = 0
     $behind = 0
     try {
-        $aheadRaw  = (git rev-list --count "origin/$branch..HEAD" 2>&1) | Select-Object -First 1
+        $aheadRaw = (git rev-list --count "origin/$branch..HEAD" 2>&1) | Select-Object -First 1
         $behindRaw = (git rev-list --count "HEAD..origin/$branch" 2>&1) | Select-Object -First 1
-        if ($aheadRaw  -match '^\d+$') { $ahead  = [int]$aheadRaw  }
+        if ($aheadRaw -match '^\d+$') { $ahead = [int]$aheadRaw }
         if ($behindRaw -match '^\d+$') { $behind = [int]$behindRaw }
-    } catch {}
+    }
+    catch {}
 
     $statusLines = @(git status --porcelain 2>&1 | Where-Object { $_ -ne '' })
 
@@ -464,11 +465,11 @@ function Show-Branches {
 
     Write-Bold 'Branches LOCAIS:'
     git branch --format '%(refname:short) %(upstream:short)' | ForEach-Object {
-        $parts    = ($_ -split '\s+', 2)
-        $local    = $parts[0]
+        $parts = ($_ -split '\s+', 2)
+        $local = $parts[0]
         $upstream = if ($parts.Count -gt 1 -and $parts[1] -ne '') { $parts[1] } else { '(sem tracking remoto)' }
-        $marker   = if ($local -eq $current) { '  * ' } else { '    ' }
-        $color    = if ($local -eq $current) { 'Green' } else { 'White' }
+        $marker = if ($local -eq $current) { '  * ' } else { '    ' }
+        $color = if ($local -eq $current) { 'Green' } else { 'White' }
         Write-Host "$marker$local  ->  $upstream" -ForegroundColor $color
     }
 
@@ -486,11 +487,11 @@ function Switch-Branch {
     Write-Header 'TROCAR DE BRANCH'
     git fetch --quiet 2>&1 | Out-Null
 
-    $current    = (git rev-parse --abbrev-ref HEAD 2>&1) | Select-Object -First 1
-    $localList  = @(git branch --format '%(refname:short)')
+    $current = (git rev-parse --abbrev-ref HEAD 2>&1) | Select-Object -First 1
+    $localList = @(git branch --format '%(refname:short)')
     $remoteList = @(git branch -r --format '%(refname:short)' | Where-Object { $_ -notmatch 'HEAD' })
 
-    $allNames    = [System.Collections.Generic.List[string]]::new()
+    $allNames = [System.Collections.Generic.List[string]]::new()
     $allIsRemote = [System.Collections.Generic.List[bool]]::new()
     $idx = 1
 
@@ -529,9 +530,9 @@ function Switch-Branch {
     $n = [int]$choice - 1
     if ($n -lt 0 -or $n -ge $allNames.Count) { Write-Err 'Opcao invalida.'; return }
 
-    $selectedName     = $allNames[$n]
+    $selectedName = $allNames[$n]
     $selectedIsRemote = $allIsRemote[$n]
-    $branchName       = $selectedName -replace '^origin/', ''
+    $branchName = $selectedName -replace '^origin/', ''
 
     if ($selectedIsRemote) {
         $out = git checkout -b $branchName --track $selectedName 2>&1
@@ -600,7 +601,7 @@ function Show-RepoInfo {
     Write-Header 'INFORMACOES DO REPOSITORIO'
     git fetch --quiet 2>&1 | Out-Null
 
-    $info   = Get-RepoInfo
+    $info = Get-RepoInfo
     $remAll = @(git remote -v 2>&1 | Select-String 'fetch' | ForEach-Object { $_.Line })
 
     Write-Bold "Caminho local     : $($info.LocalPath)"
@@ -637,7 +638,7 @@ function Show-RepoInfo {
 
     Write-Host ''
     Write-Bold 'Configuracoes Git do usuario:'
-    $gitName  = git config user.name  2>&1
+    $gitName = git config user.name  2>&1
     $gitEmail = git config user.email 2>&1
     Write-Host "  user.name  : $gitName"  -ForegroundColor Gray
     Write-Host "  user.email : $gitEmail" -ForegroundColor Gray
@@ -658,7 +659,7 @@ function Invoke-DeployPages {
     }
 
     # Descobrir scripts de deploy disponiveis no package.json
-    $pkgJson    = Get-Content $packageFile -Raw | ConvertFrom-Json
+    $pkgJson = Get-Content $packageFile -Raw | ConvertFrom-Json
     $allScripts = $pkgJson.scripts.PSObject.Properties.Name
 
     $deployOptions = [System.Collections.Generic.List[PSCustomObject]]::new()
@@ -669,7 +670,7 @@ function Invoke-DeployPages {
         $deployOptions.Add([PSCustomObject]@{ Label = 'Dominio proprio (CNAME configurado)'; Script = 'deploy:domain'; Color = 'Yellow' })
     }
     # fallback: qualquer script que comece com 'deploy' e nao seja alias dos dois acima
-    foreach ($s in ($allScripts | Where-Object { $_ -like 'deploy*' -and $_ -notin @('deploy:pages','deploy:domain') })) {
+    foreach ($s in ($allScripts | Where-Object { $_ -like 'deploy*' -and $_ -notin @('deploy:pages', 'deploy:domain') })) {
         $deployOptions.Add([PSCustomObject]@{ Label = $s; Script = $s; Color = 'Cyan' })
     }
 
@@ -682,7 +683,8 @@ function Invoke-DeployPages {
     if ($deployOptions.Count -eq 1) {
         $deployScript = $deployOptions[0].Script
         Write-Info "Usando: $deployScript"
-    } else {
+    }
+    else {
         $letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         Write-Host '  Modalidade de deploy:' -ForegroundColor White
         for ($i = 0; $i -lt $deployOptions.Count; $i++) {
@@ -706,7 +708,8 @@ function Invoke-DeployPages {
 
     if ($Force) {
         Write-Warn 'Modo FORCE: ignorando checagem de arquivos nao commitados.'
-    } else {
+    }
+    else {
         Write-Info 'Verificando se ha alteracoes nao commitadas...'
         $statusLines = @(git status --porcelain 2>&1 | Where-Object { $_ -ne '' })
         if ($statusLines.Count -gt 0) {
@@ -741,7 +744,7 @@ function Invoke-DeployPages {
         if (-not $siteUrl) {
             $remote = (git remote get-url origin 2>&1) | Select-Object -First 1
             if ($remote -match 'github\.com[:/](.+?)(?:\.git)?$') {
-                $slug  = $Matches[1]           # ex: wesleyzilva/dradaianaferraz_gold
+                $slug = $Matches[1]           # ex: wesleyzilva/dradaianaferraz_gold
                 $parts = $slug -split '/'
                 $siteUrl = "https://$($parts[0]).github.io/$($parts[1])/"
             }
@@ -752,11 +755,11 @@ function Invoke-DeployPages {
         Write-Host '  VALIDACOES POS-DEPLOY' -ForegroundColor Cyan
         Write-Host '  ============================================' -ForegroundColor Cyan
         # Coleta dados do commit e repo remoto para exibir nas validacoes
-        $lastCommit  = (git log --oneline -1 2>&1) | Select-Object -First 1
-        $remote      = (git remote get-url origin 2>&1) | Select-Object -First 1
-        $repoSlug    = if ($remote -match 'github\.com[:/](.+?)(?:\.git)?$') { $Matches[1] } else { $null }
-        $actionsUrl  = if ($repoSlug) { "https://github.com/$repoSlug/actions" } else { $null }
-        $commitUrl   = if ($repoSlug -and $lastCommit -match '^([0-9a-f]+)') { "https://github.com/$repoSlug/commit/$($Matches[1])" } else { $null }
+        $lastCommit = (git log --oneline -1 2>&1) | Select-Object -First 1
+        $remote = (git remote get-url origin 2>&1) | Select-Object -First 1
+        $repoSlug = if ($remote -match 'github\.com[:/](.+?)(?:\.git)?$') { $Matches[1] } else { $null }
+        $actionsUrl = if ($repoSlug) { "https://github.com/$repoSlug/actions" } else { $null }
+        $commitUrl = if ($repoSlug -and $lastCommit -match '^([0-9a-f]+)') { "https://github.com/$repoSlug/commit/$($Matches[1])" } else { $null }
 
         if ($siteUrl) {
             Write-Host "  Site publicado em: $siteUrl" -ForegroundColor White
@@ -874,14 +877,16 @@ function Invoke-Rename {
         git push origin ":$currentBranch" 2>&1 | Out-Null
         if ($LASTEXITCODE -eq 0) {
             Write-OK "Branch remota '$currentBranch' removida."
-        } else {
+        }
+        else {
             Write-Warn "Branch remota '$currentBranch' nao encontrada (ignorado)."
         }
 
         $outPush = git push --set-upstream origin $newBranch 2>&1
         if ($LASTEXITCODE -eq 0) {
             Write-OK "Branch '$newBranch' publicada no remoto com tracking configurado."
-        } else {
+        }
+        else {
             Write-Err 'Falha ao publicar nova branch no remoto:'
             $outPush | ForEach-Object { Write-Host "  $_" -ForegroundColor Red }
         }
@@ -890,7 +895,7 @@ function Invoke-Rename {
     # ── Renomear pasta local ─────────────────────────────────────────────────
     if ($choice -in @('B', 'C')) {
         $currentFolder = Split-Path $RepoPath -Leaf
-        $parentFolder  = Split-Path $RepoPath -Parent
+        $parentFolder = Split-Path $RepoPath -Parent
         Write-Host ''
         Write-Host "  Pasta atual: $RepoPath" -ForegroundColor Cyan
         $newFolder = (Read-Host '  Novo nome da pasta (Enter = cancelar)').Trim()
@@ -930,7 +935,8 @@ function Invoke-Rename {
             Write-Host ''
             Write-Warn 'O script sera encerrado pois o caminho mudou.'
             Write-Info "Reabra o terminal em: $newPath\gitCommands"
-        } catch {
+        }
+        catch {
             Write-Err "Falha ao renomear pasta: $_"
             return
         }
@@ -953,6 +959,301 @@ function Invoke-Rename {
 }
 
 # ---------------------------------------------------------------------------
+# OPCAO 15 - Status detalhado (git status)
+# ---------------------------------------------------------------------------
+function Show-Status {
+    Write-Header 'STATUS DETALHADO'
+    git status
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 16 - Log (historico de commits, grafico)
+# ---------------------------------------------------------------------------
+function Show-Log {
+    Write-Header 'HISTORICO DE COMMITS'
+    $n = Read-Host '  Quantos commits exibir? (Enter = 20)'
+    if ([string]::IsNullOrWhiteSpace($n)) { $n = '20' }
+    git log --graph --oneline --decorate --all -n $n
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 17 - Diff (working tree ou staged)
+# ---------------------------------------------------------------------------
+function Show-Diff {
+    Write-Header 'DIFF'
+    Write-Host '  [1] Diff working tree (nao staged)' -ForegroundColor Cyan
+    Write-Host '  [2] Diff staged (ja em index)'      -ForegroundColor Cyan
+    Write-Host '  [3] Diff vs origin/<branch atual>'  -ForegroundColor Cyan
+    $c = Read-Host '  Escolha'
+    switch ($c.Trim()) {
+        '1' { git diff }
+        '2' { git diff --cached }
+        '3' {
+            $br = (git rev-parse --abbrev-ref HEAD).Trim()
+            git diff "origin/$br"
+        }
+        default { Write-Warn 'Opcao invalida' }
+    }
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 18 - Fetch (apenas baixa refs, sem merge)
+# ---------------------------------------------------------------------------
+function Invoke-Fetch {
+    Write-Header 'FETCH'
+    Write-Info 'Buscando refs remotas...'
+    git fetch --all --prune
+    Write-OK 'Fetch concluido'
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 19 - Criar nova branch
+# ---------------------------------------------------------------------------
+function New-BranchInteractive {
+    Write-Header 'CRIAR NOVA BRANCH'
+    $name = Read-Host '  Nome da nova branch'
+    if ([string]::IsNullOrWhiteSpace($name)) { Write-Warn 'Nome vazio'; return }
+    $base = Read-Host '  Branch base (Enter = atual)'
+    if ([string]::IsNullOrWhiteSpace($base)) {
+        git checkout -b $name
+    }
+    else {
+        git checkout -b $name $base
+    }
+    if ($LASTEXITCODE -eq 0) {
+        Write-OK "Branch '$name' criada e ativada"
+        $push = Read-Host '  Push para origin agora? (s/N)'
+        if ($push -match '^[sS]') {
+            git push -u origin $name
+        }
+    }
+    else {
+        Write-Err 'Falha ao criar branch'
+    }
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 20 - Deletar branch (local e/ou remota)
+# ---------------------------------------------------------------------------
+function Remove-BranchInteractive {
+    Write-Header 'DELETAR BRANCH'
+    git branch -a
+    Write-Host ''
+    $name = Read-Host '  Nome da branch a deletar'
+    if ([string]::IsNullOrWhiteSpace($name)) { Write-Warn 'Nome vazio'; return }
+    $current = (git rev-parse --abbrev-ref HEAD).Trim()
+    if ($name -eq $current) { Write-Err 'Voce esta na branch que tentou deletar'; return }
+
+    $confirm = Read-Host "  Confirmar deletar '$name' LOCAL? (s/N)"
+    if ($confirm -match '^[sS]') {
+        git branch -D $name
+        if ($LASTEXITCODE -eq 0) { Write-OK 'Branch local removida' }
+    }
+    $confirmR = Read-Host "  Deletar tambem no REMOTO origin? (s/N)"
+    if ($confirmR -match '^[sS]') {
+        git push origin --delete $name
+        if ($LASTEXITCODE -eq 0) { Write-OK 'Branch remota removida' }
+    }
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 21 - Merge de outra branch na atual
+# ---------------------------------------------------------------------------
+function Invoke-Merge {
+    Write-Header 'MERGE'
+    git branch -a
+    Write-Host ''
+    $src = Read-Host '  Branch a ser mesclada na atual'
+    if ([string]::IsNullOrWhiteSpace($src)) { Write-Warn 'Nome vazio'; return }
+    $noff = Read-Host '  Usar --no-ff? (s/N)'
+    if ($noff -match '^[sS]') {
+        git merge --no-ff $src
+    }
+    else {
+        git merge $src
+    }
+    if ($LASTEXITCODE -eq 0) { Write-OK 'Merge concluido' } else { Write-Err 'Conflitos ou falha no merge' }
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 22 - Stash (save, list, pop, drop)
+# ---------------------------------------------------------------------------
+function Invoke-Stash {
+    Write-Header 'STASH'
+    Write-Host '  [1] Salvar alteracoes (stash push)' -ForegroundColor Cyan
+    Write-Host '  [2] Listar stashes'                  -ForegroundColor Cyan
+    Write-Host '  [3] Aplicar e remover (pop)'         -ForegroundColor Cyan
+    Write-Host '  [4] Aplicar sem remover (apply)'     -ForegroundColor Cyan
+    Write-Host '  [5] Descartar stash (drop)'          -ForegroundColor Cyan
+    Write-Host '  [6] Limpar tudo (clear)'             -ForegroundColor Red
+    $c = Read-Host '  Escolha'
+    switch ($c.Trim()) {
+        '1' {
+            $msg = Read-Host '  Mensagem do stash (opcional)'
+            if ([string]::IsNullOrWhiteSpace($msg)) { git stash push } else { git stash push -m $msg }
+        }
+        '2' { git stash list }
+        '3' { git stash pop }
+        '4' { git stash apply }
+        '5' {
+            git stash list
+            $i = Read-Host '  Indice do stash (ex: 0)'
+            git stash drop "stash@{$i}"
+        }
+        '6' {
+            $ok = Read-Host '  Apagar TODOS os stashes? (s/N)'
+            if ($ok -match '^[sS]') { git stash clear; Write-OK 'Stashes apagados' }
+        }
+        default { Write-Warn 'Opcao invalida' }
+    }
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 23 - Tags (listar, criar, deletar, push)
+# ---------------------------------------------------------------------------
+function Invoke-Tag {
+    Write-Header 'TAGS'
+    Write-Host '  [1] Listar tags'                  -ForegroundColor Cyan
+    Write-Host '  [2] Criar tag anotada no HEAD'    -ForegroundColor Cyan
+    Write-Host '  [3] Push de tag para origin'      -ForegroundColor Cyan
+    Write-Host '  [4] Deletar tag local'            -ForegroundColor Cyan
+    Write-Host '  [5] Deletar tag remota'           -ForegroundColor Cyan
+    $c = Read-Host '  Escolha'
+    switch ($c.Trim()) {
+        '1' { git tag --sort=-creatordate | Select-Object -First 30 }
+        '2' {
+            $name = Read-Host '  Nome da tag (ex: v1.0.0)'
+            $msg = Read-Host '  Mensagem'
+            git tag -a $name -m $msg
+            if ($LASTEXITCODE -eq 0) { Write-OK "Tag $name criada localmente" }
+        }
+        '3' {
+            $name = Read-Host '  Nome da tag a enviar'
+            git push origin $name
+        }
+        '4' {
+            $name = Read-Host '  Nome da tag a deletar (local)'
+            git tag -d $name
+        }
+        '5' {
+            $name = Read-Host '  Nome da tag a deletar (remota)'
+            git push origin --delete $name
+        }
+        default { Write-Warn 'Opcao invalida' }
+    }
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 24 - Reset (soft / mixed / hard)
+# ---------------------------------------------------------------------------
+function Invoke-Reset {
+    Write-Header 'RESET'
+    git log --oneline -n 10
+    Write-Host ''
+    Write-Host '  [1] Soft  (mantem alteracoes em staged)'   -ForegroundColor Yellow
+    Write-Host '  [2] Mixed (mantem alteracoes em working)'  -ForegroundColor Yellow
+    Write-Host '  [3] Hard  (PERDE alteracoes!)'             -ForegroundColor Red
+    $c = Read-Host '  Escolha'
+    $target = Read-Host '  Alvo (ex: HEAD~1, HEAD, <hash>)'
+    if ([string]::IsNullOrWhiteSpace($target)) { Write-Warn 'Alvo vazio'; return }
+    switch ($c.Trim()) {
+        '1' { git reset --soft  $target }
+        '2' { git reset --mixed $target }
+        '3' {
+            $ok = Read-Host "  CONFIRMAR reset --hard $target (perde alteracoes)? (digite SIM)"
+            if ($ok -eq 'SIM') { git reset --hard $target } else { Write-Warn 'Cancelado' }
+        }
+        default { Write-Warn 'Opcao invalida' }
+    }
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 25 - Revert (cria commit que desfaz outro)
+# ---------------------------------------------------------------------------
+function Invoke-Revert {
+    Write-Header 'REVERT'
+    git log --oneline -n 10
+    Write-Host ''
+    $hash = Read-Host '  Hash do commit a reverter'
+    if ([string]::IsNullOrWhiteSpace($hash)) { Write-Warn 'Hash vazio'; return }
+    git revert $hash
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 26 - Cherry-pick
+# ---------------------------------------------------------------------------
+function Invoke-CherryPick {
+    Write-Header 'CHERRY-PICK'
+    $hash = Read-Host '  Hash(es) do commit (separados por espaco)'
+    if ([string]::IsNullOrWhiteSpace($hash)) { Write-Warn 'Hash vazio'; return }
+    git cherry-pick $hash.Split(' ')
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 27 - Clean (remove untracked)
+# ---------------------------------------------------------------------------
+function Invoke-Clean {
+    Write-Header 'CLEAN (remove arquivos untracked)'
+    Write-Info 'Preview do que seria removido:'
+    git clean -nd
+    Write-Host ''
+    $ok = Read-Host '  Remover de verdade? (digite SIM)'
+    if ($ok -eq 'SIM') {
+        git clean -fd
+        Write-OK 'Arquivos untracked removidos'
+    }
+    else {
+        Write-Warn 'Cancelado'
+    }
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 28 - Commit com mensagem custom
+# ---------------------------------------------------------------------------
+function Invoke-CustomCommit {
+    Write-Header 'COMMIT (mensagem personalizada)'
+    git status --short
+    Write-Host ''
+    $msg = Read-Host '  Mensagem do commit'
+    if ([string]::IsNullOrWhiteSpace($msg)) { Write-Warn 'Mensagem vazia'; return }
+    git add -A
+    git commit -m $msg
+    if ($LASTEXITCODE -eq 0) {
+        Write-OK 'Commit criado'
+        $push = Read-Host '  Push agora? (s/N)'
+        if ($push -match '^[sS]') { git push }
+    }
+}
+
+# ---------------------------------------------------------------------------
+# OPCAO 29 - Remote management (listar, adicionar, alterar URL)
+# ---------------------------------------------------------------------------
+function Invoke-RemoteManage {
+    Write-Header 'REMOTE'
+    git remote -v
+    Write-Host ''
+    Write-Host '  [1] Adicionar remote'           -ForegroundColor Cyan
+    Write-Host '  [2] Alterar URL de remote'      -ForegroundColor Cyan
+    Write-Host '  [3] Remover remote'             -ForegroundColor Cyan
+    $c = Read-Host '  Escolha (Enter=sair)'
+    switch ($c.Trim()) {
+        '1' {
+            $n = Read-Host '  Nome'; $u = Read-Host '  URL'
+            git remote add $n $u
+        }
+        '2' {
+            $n = Read-Host '  Nome'; $u = Read-Host '  Nova URL'
+            git remote set-url $n $u
+        }
+        '3' {
+            $n = Read-Host '  Nome'
+            git remote remove $n
+        }
+        default { }
+    }
+}
+
+# ---------------------------------------------------------------------------
 # Menu principal
 # ---------------------------------------------------------------------------
 function Show-Menu {
@@ -960,15 +1261,15 @@ function Show-Menu {
 
     if (($info.CommitsAhead -eq 0) -and ($info.CommitsBehind -eq 0)) {
         $syncStatus = '[OK] Sincronizado'
-        $syncColor  = 'Green'
+        $syncColor = 'Green'
     }
     elseif ($info.CommitsAhead -gt 0) {
         $syncStatus = "[!] Local +$($info.CommitsAhead) a frente -> PUSH recomendado (opcao 7)"
-        $syncColor  = 'Yellow'
+        $syncColor = 'Yellow'
     }
     else {
         $syncStatus = "[!] Remoto +$($info.CommitsBehind) a frente -> use opcao 5 (pull) ou 8 (sync)"
-        $syncColor  = 'Yellow'
+        $syncColor = 'Yellow'
     }
 
     $uncommitedMsg = ''
@@ -1013,6 +1314,16 @@ function Show-Menu {
     Write-Host '  [13] Force push para main (sobrescreve main)'               -ForegroundColor Red
     Write-Host '  [14] Renomear branch / pasta local / repo remoto'           -ForegroundColor White
     Write-Host ''
+    Write-Host '  === COMANDOS GIT ==='                                        -ForegroundColor DarkYellow
+    Write-Host '  [15] Status detalhado            [16] Log (grafico)'         -ForegroundColor White
+    Write-Host '  [17] Diff (working/staged/origin) [18] Fetch (apenas)'       -ForegroundColor White
+    Write-Host '  [19] Criar nova branch            [20] Deletar branch'       -ForegroundColor White
+    Write-Host '  [21] Merge branch                 [22] Stash (save/pop/...)' -ForegroundColor White
+    Write-Host '  [23] Tags (list/create/push)      [24] Reset (soft/hard)'    -ForegroundColor White
+    Write-Host '  [25] Revert commit                [26] Cherry-pick'          -ForegroundColor White
+    Write-Host '  [27] Clean (untracked)            [28] Commit msg custom'    -ForegroundColor White
+    Write-Host '  [29] Remote (list/add/set-url)'                              -ForegroundColor White
+    Write-Host ''
     Write-Host '  [0]  Sair'                                                   -ForegroundColor DarkGray
     Write-Host ''
 }
@@ -1032,22 +1343,37 @@ while ($true) {
     Write-Host ''
 
     switch ($opcao.Trim()) {
-        '1'  { Show-CompareStatus              }
-        '2'  { Show-RepoInfo                   }
-        '3'  { Show-Branches                   }
-        '4'  { Switch-Branch                   }
-        '5'  { Invoke-Pull                     }
-        '6'  { Invoke-RandomCommit             }
-        '7'  { Invoke-Push                     }
-        '8'  { Invoke-SyncPush                 }
-        '9'  { Invoke-DeployPages              }
-        '10' { Invoke-DeployPages -Force       }
-        '11' { Invoke-CloneAndAddToWorkspace   }
-        '12' { Invoke-RemoveFromWorkspace      }
-        '13' { Invoke-ForcePushToMain          }
-        '14' { Invoke-Rename                   }
-        '0'  { Write-Host "`n  Ate logo!`n" -ForegroundColor Cyan; exit 0 }
-        default { Write-Warn 'Opcao invalida. Digite um numero entre 0 e 14.' }
+        '1' { Show-CompareStatus }
+        '2' { Show-RepoInfo }
+        '3' { Show-Branches }
+        '4' { Switch-Branch }
+        '5' { Invoke-Pull }
+        '6' { Invoke-RandomCommit }
+        '7' { Invoke-Push }
+        '8' { Invoke-SyncPush }
+        '9' { Invoke-DeployPages }
+        '10' { Invoke-DeployPages -Force }
+        '11' { Invoke-CloneAndAddToWorkspace }
+        '12' { Invoke-RemoveFromWorkspace }
+        '13' { Invoke-ForcePushToMain }
+        '14' { Invoke-Rename }
+        '15' { Show-Status }
+        '16' { Show-Log }
+        '17' { Show-Diff }
+        '18' { Invoke-Fetch }
+        '19' { New-BranchInteractive }
+        '20' { Remove-BranchInteractive }
+        '21' { Invoke-Merge }
+        '22' { Invoke-Stash }
+        '23' { Invoke-Tag }
+        '24' { Invoke-Reset }
+        '25' { Invoke-Revert }
+        '26' { Invoke-CherryPick }
+        '27' { Invoke-Clean }
+        '28' { Invoke-CustomCommit }
+        '29' { Invoke-RemoteManage }
+        '0' { Write-Host "`n  Ate logo!`n" -ForegroundColor Cyan; exit 0 }
+        default { Write-Warn 'Opcao invalida. Digite um numero entre 0 e 29.' }
     }
 
     Write-Host ''
