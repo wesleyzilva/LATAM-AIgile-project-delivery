@@ -359,6 +359,128 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════
+          imSQUAD FRAMEWORK
+      ══════════════════════════════════════════════ */}
+      <section
+        id="imsquad"
+        className="scroll-mt-20 bg-[#0D1B2A]"
+        style={{ padding: "6rem 2rem" }}
+      >
+        <div className="max-w-5xl mx-auto">
+          <SectionLabel label="imSquad Framework" />
+          <h2
+            className="text-center font-extrabold tracking-tight text-white mb-3"
+            style={{
+              fontFamily: "var(--font-poppins), sans-serif",
+              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+            }}
+          >
+            How I build{" "}
+            <span className="text-[#4CC9F0]">high-performance</span> teams
+          </h2>
+          <p className="text-center text-[#E0E1DD]/55 text-base mb-4 max-w-2xl mx-auto">
+            imSquad is the AI-powered squad structure I use to run global dev teams.
+            Three specialized agents — each owning a discipline, all aligned to ship.
+          </p>
+          <p className="text-center text-[#4CC9F0]/60 text-xs font-bold tracking-widest uppercase mb-12">
+            imDev · imQA · imPO
+          </p>
+
+          {/* 3 pillar cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+            {/* imDev */}
+            <div className="flex flex-col rounded-2xl border border-[#4CC9F0]/30 bg-[#1B263B] overflow-hidden hover:border-[#4CC9F0]/60 transition-colors">
+              <div className="px-6 pt-6 pb-4 border-b border-[#415A77]/40">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">⚙️</span>
+                  <div>
+                    <p className="text-[#4CC9F0] font-extrabold text-lg tracking-tight" style={{ fontFamily: "var(--font-poppins), sans-serif" }}>
+                      imDev
+                    </p>
+                    <p className="text-[#E0E1DD]/45 text-xs uppercase tracking-widest">Engineering Agent</p>
+                  </div>
+                </div>
+                <p className="text-[#E0E1DD]/70 text-sm leading-relaxed">
+                  Owns technical execution. Manages developer velocity, code quality gates, CI/CD discipline, and DevSecOps compliance — so engineers ship fast and clean.
+                </p>
+              </div>
+              <div className="px-6 py-4 flex flex-col gap-2">
+                {["Sprint velocity & DORA metrics", "CI/CD pipeline governance", "DevSecOps gates (Veracode/Checkmarx)", "Tech debt prioritization", "Onboarding global devs in < 48h"].map((item) => (
+                  <div key={item} className="flex items-start gap-2">
+                    <span className="text-[#4CC9F0] text-xs mt-0.5">▸</span>
+                    <span className="text-[#E0E1DD]/60 text-xs leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* imQA */}
+            <div className="flex flex-col rounded-2xl border border-[#F72585]/30 bg-[#1B263B] overflow-hidden hover:border-[#F72585]/60 transition-colors">
+              <div className="px-6 pt-6 pb-4 border-b border-[#415A77]/40">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">🔬</span>
+                  <div>
+                    <p className="text-[#F72585] font-extrabold text-lg tracking-tight" style={{ fontFamily: "var(--font-poppins), sans-serif" }}>
+                      imQA
+                    </p>
+                    <p className="text-[#E0E1DD]/45 text-xs uppercase tracking-widest">Quality Agent</p>
+                  </div>
+                </div>
+                <p className="text-[#E0E1DD]/70 text-sm leading-relaxed">
+                  Owns quality assurance end-to-end. Defines test strategies, automates coverage, enforces Definition of Done, and prevents production incidents before they happen.
+                </p>
+              </div>
+              <div className="px-6 py-4 flex flex-col gap-2">
+                {["Test automation strategy & coverage", "Definition of Done enforcement", "Bug triage & severity classification", "Regression risk assessment per sprint", "QA metrics dashboard for stakeholders"].map((item) => (
+                  <div key={item} className="flex items-start gap-2">
+                    <span className="text-[#F72585] text-xs mt-0.5">▸</span>
+                    <span className="text-[#E0E1DD]/60 text-xs leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* imPO */}
+            <div className="flex flex-col rounded-2xl border border-[#7209B7]/40 bg-[#1B263B] overflow-hidden hover:border-[#7209B7]/70 transition-colors">
+              <div className="px-6 pt-6 pb-4 border-b border-[#415A77]/40">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">🎯</span>
+                  <div>
+                    <p className="text-[#b64ee8] font-extrabold text-lg tracking-tight" style={{ fontFamily: "var(--font-poppins), sans-serif" }}>
+                      imPO
+                    </p>
+                    <p className="text-[#E0E1DD]/45 text-xs uppercase tracking-widest">Product Owner Agent</p>
+                  </div>
+                </div>
+                <p className="text-[#E0E1DD]/70 text-sm leading-relaxed">
+                  Owns the product backlog and stakeholder alignment. Translates business needs into sprint-ready stories, manages priorities, and bridges the gap between CTO and dev team.
+                </p>
+              </div>
+              <div className="px-6 py-4 flex flex-col gap-2">
+                {["Backlog grooming & story mapping", "OKR-to-sprint alignment", "Stakeholder communication rhythm", "Feature prioritization (WSJF/RICE)", "Roadmap visibility for CTOs & investors"].map((item) => (
+                  <div key={item} className="flex items-start gap-2">
+                    <span className="text-[#b64ee8] text-xs mt-0.5">▸</span>
+                    <span className="text-[#E0E1DD]/60 text-xs leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* How it works — PM layer */}
+          <div className="rounded-2xl border border-[#415A77]/40 bg-[#1B263B]/50 px-8 py-6 max-w-3xl mx-auto text-center">
+            <p className="text-xs font-bold tracking-widest uppercase text-[#4CC9F0]/70 mb-3">How it works</p>
+            <p className="text-white font-semibold text-base mb-2">
+              I operate as the <span className="text-[#4CC9F0]">PM layer</span> above all three agents.
+            </p>
+            <p className="text-[#E0E1DD]/60 text-sm leading-relaxed">
+              I hire, onboard, and align imDev · imQA · imPO for your startup — using AI-assisted workflows to reduce management overhead by up to 60% while keeping delivery predictable and stakeholders informed.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
           PORTFOLIO
       ══════════════════════════════════════════════ */}
       <section
@@ -535,61 +657,47 @@ export default function HomePage() {
               fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
             }}
           >
-            Watch me in action
+            Watch the imSquad framework in action
           </h2>
           <p className="text-center text-[#E0E1DD]/45 text-sm mb-10">
-            Real context. No script. Who I am and how I work.
+            Sessions covering imDev · imQA · imPO — coming soon.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Who I'm",
-                desc: "Quick intro — background, values, and how I operate in distributed teams.",
-                videoId: "375420259d694faf96147e51777c9cde",
-              },
-              {
-                title: "My 10 Years Pitch",
-                desc: "14 years condensed: from IT Technician to Global Agile PM. The arc that matters.",
-                videoId: "REPLACE_LOOM_ID_2",
-              },
-              {
-                title: "Methodologies, Frameworks & Tools",
-                desc: "Scrum, SAFe, Kanban, Jira, ServiceNow — how I actually use them day-to-day.",
-                videoId: "REPLACE_LOOM_ID_3",
-              },
-              {
-                title: "Deep Engineer",
-                desc: "Full-Stack, Observability, DevSecOps — the technical depth behind the delivery layer.",
-                videoId: "REPLACE_LOOM_ID_4",
-              },
-              {
-                title: "Data Management",
-                desc: "80M+ tx/day, R$500M reconciliation, Databricks migrations — data engineering at scale.",
-                videoId: "REPLACE_LOOM_ID_5",
-              },
-            ].map((v) => (
-              <div
-                key={v.videoId}
-                className="flex flex-col gap-3 rounded-2xl bg-[#0D1B2A] border border-[#415A77] overflow-hidden hover:border-[#4CC9F0]/50 transition-colors"
+          {/* Under Construction overlay */}
+          <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: "340px" }}>
+            {/* Ghost grid — blurred placeholder */}
+            <div
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 filter blur-sm opacity-30 pointer-events-none select-none"
+              aria-hidden="true"
+            >
+              {["Who I&#39;m", "imSquad Walkthrough", "imDev in Practice", "imQA Strategy", "imPO Backlog Live"].map((title) => (
+                <div
+                  key={title}
+                  className="flex flex-col gap-3 rounded-2xl bg-[#0D1B2A] border border-[#415A77] overflow-hidden"
+                >
+                  <div className="w-full bg-[#415A77]/30" style={{ paddingBottom: "56.25%" }} />
+                  <div className="px-5 pb-5">
+                    <div className="h-4 w-2/3 rounded bg-[#415A77]/40 mb-2" />
+                    <div className="h-3 w-full rounded bg-[#415A77]/30" />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Overlay */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl bg-[#0D1B2A]/80 backdrop-blur-sm">
+              <span className="text-5xl mb-4">🎬</span>
+              <p
+                className="text-white font-extrabold text-2xl mb-2 text-center"
+                style={{ fontFamily: "var(--font-poppins), sans-serif" }}
               >
-                {/* Video embed */}
-                <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-                  <iframe
-                    src={`https://www.loom.com/embed/${v.videoId}?hide_owner=true&hide_share=true&hide_title=false&hideEmbedTopBar=true`}
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                    style={{ border: "none" }}
-                    title={v.title}
-                  />
-                </div>
-                {/* Caption */}
-                <div className="px-5 pb-5">
-                  <h3 className="text-white font-bold text-base mb-1">{v.title}</h3>
-                  <p className="text-sm text-[#E0E1DD]/55 leading-relaxed">{v.desc}</p>
-                </div>
-              </div>
-            ))}
+                Under Construction
+              </p>
+              <p className="text-[#E0E1DD]/55 text-sm text-center max-w-xs">
+                Loom sessions for imSquad — imDev, imQA &amp; imPO — are being recorded.<br />
+                Check back soon.
+              </p>
+            </div>
           </div>
         </div>
       </section>
