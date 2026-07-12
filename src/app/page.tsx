@@ -1,7 +1,7 @@
 ﻿<<<<<<< HEAD
 "use client";
 =======
-ï»¿"use client";
+"use client";
 >>>>>>> 12341a5 (Add portfolio popup on entry)
 
 import { useState } from "react";
@@ -495,4 +495,5 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
 
