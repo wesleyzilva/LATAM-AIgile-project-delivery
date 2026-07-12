@@ -98,6 +98,18 @@ const timeline = [
   },
 ];
 
+// â”€â”€ PAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <div className="mb-6 flex justify-center">
+      <span className="rounded-full border border-[#4CC9F0]/25 bg-[#4CC9F0]/10 px-4 py-1 text-[11px] font-bold uppercase tracking-[0.35em] text-[#4CC9F0]">
+        {label}
+      </span>
+    </div>
+  );
+}
+
 export default function HomePage() {
   const [isPopupOpen, setIsPopupOpen] = useState(true);
   const portfolioUrl = "https://wesleyzilva.github.io/portfolio";
