@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import ProofStrip from "@/components/ProofStrip";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -100,8 +103,48 @@ const timeline = [
 // ── PAGE ──────────────────────────────────────────────────────────
 
 export default function HomePage() {
+  const [isPopupOpen, setIsPopupOpen] = useState(true);
+  const portfolioUrl = "https://wesleyzilva.github.io/portfolio";
+
+  const openPortfolio = () => {
+    setIsPopupOpen(false);
+    window.open(portfolioUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <main>
+      {isPopupOpen && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-slate-950/85 px-4 backdrop-blur-sm">
+          <div className="w-full max-w-md rounded-3xl border border-[#4CC9F0]/30 bg-[#0D1B2A]/95 p-6 shadow-2xl shadow-black/40">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#4CC9F0]">
+              New portfolio
+            </p>
+            <h2 className="mt-2 text-2xl font-bold text-white">
+              Wesley Zilva · Agile Delivery Manager · LATAM Remote
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-[#E0E1DD]/70">
+              This experience is now focused on recruiter and hiring-manager
+              priorities, with a sharper view of delivery, leadership, and
+              measurable impact.
+            </p>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <button
+                onClick={openPortfolio}
+                className="flex-1 rounded-full bg-[#4CC9F0] px-4 py-3 text-sm font-bold text-[#0D1B2A] transition-colors hover:bg-[#4CC9F0]/80"
+              >
+                Open portfolio
+              </button>
+              <button
+                onClick={() => setIsPopupOpen(false)}
+                className="flex-1 rounded-full border border-[#415A77] px-4 py-3 text-sm font-semibold text-[#E0E1DD]/80 transition-colors hover:border-[#4CC9F0] hover:text-[#4CC9F0]"
+              >
+                Stay here
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {/* ══════════════════════════════════════════════
           HERO — Everything the recruiter needs in <54s
       ══════════════════════════════════════════════ */}
